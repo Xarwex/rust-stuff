@@ -4,6 +4,7 @@ use std::mem::size_of;
 
 trait ObjectSafe {
     fn crab(&self);
+    fn crabbo(&self) -> Box<dyn ObjectSafe>;
 }
 
 // The pointer to this trait will be single width and we need two pointers - second one will point to the vtable

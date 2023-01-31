@@ -32,6 +32,25 @@ impl Crab for Croge {
     }
 }
 
+struct Lobster {}
+
+impl Crab for Lobster {
+    fn new() -> Self
+    where
+        Self: Sized,
+    {
+        Lobster {}
+    }
+
+    fn snip(&self) {
+        println!("snap");
+    }
+
+    fn length(&self) -> u8 {
+        1
+    }
+}
+
 trait Zoo {
     fn open(&mut self);
     fn close(&mut self);
@@ -83,7 +102,11 @@ impl CrabAndZoo {
 }
 
 fn main() {
-    let crabs: Vec<Box<dyn Crab>> = vec![Box::new(Croge::new()), Box::new(Croge::new())];
+    let crabs: Vec<Box<dyn Crab>> = vec![
+        Box::new(Croge::new()),
+        Box::new(Croge::new()),
+        Box::new(Lobster::new()),
+    ];
     let zoo = Box::new(Zoge::new());
 
     CrabAndZoo { crabs, zoo }.day_in_a_crab_zoo();
